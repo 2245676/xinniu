@@ -89,3 +89,33 @@ function xinniu_get_current_url() {
 	return home_url( $request_uri );
 }
 
+/**
+ * Get the primary reservation URL.
+ *
+ * @return string
+ */
+function xinniu_get_reservation_url() {
+	$url   = (string) xinniu_get_option( 'header_cta_url' );
+	$phone = (string) xinniu_get_option( 'reservation_phone' );
+
+	if ( '' !== $url ) {
+		return $url;
+	}
+
+	if ( '' !== $phone ) {
+		return 'tel:' . preg_replace( '/[^0-9+]/', '', $phone );
+	}
+
+	return home_url( '/reservation/' );
+}
+
+/**
+ * Get the primary reservation label.
+ *
+ * @return string
+ */
+function xinniu_get_reservation_label() {
+	$label = (string) xinniu_get_option( 'header_cta_label' );
+
+	return '' !== $label ? $label : __( 'Reserve', 'xinniu-hotpot' );
+}

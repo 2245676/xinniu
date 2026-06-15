@@ -34,8 +34,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</p>
 		</div>
 	</footer>
+	<?php get_template_part( 'template-parts/global/mobile-actions' ); ?>
 </div>
 <?php wp_footer(); ?>
 </body>
 </html>
-

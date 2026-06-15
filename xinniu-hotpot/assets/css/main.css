@@ -19,6 +19,7 @@ body {
 	color: var(--xinniu-charcoal);
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", "Noto Sans SC", sans-serif;
 	line-height: 1.7;
+	padding-bottom: 72px;
 }
 
 a {
@@ -74,14 +75,16 @@ img {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: 1.5rem;
-	min-height: 76px;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	min-height: 68px;
+	padding: 0.75rem 0;
 }
 
 .site-branding__name {
 	color: #fff;
 	font-family: "Noto Serif JP", "Noto Serif SC", Georgia, serif;
-	font-size: 1.25rem;
+	font-size: 1.125rem;
 	font-weight: 600;
 	text-decoration: none;
 }
@@ -94,10 +97,8 @@ img {
 
 .site-navigation__menu,
 .site-footer__menu {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 1rem;
-	align-items: center;
+	display: grid;
+	gap: 0.25rem;
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -105,17 +106,46 @@ img {
 
 .site-navigation a,
 .site-footer a {
+	display: flex;
+	align-items: center;
+	min-height: 44px;
 	color: inherit;
 	text-decoration: none;
 }
 
 .site-navigation-toggle {
-	display: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 44px;
 	border: 1px solid rgba(255, 255, 255, 0.28);
 	border-radius: 4px;
 	background: transparent;
 	color: #fff;
-	padding: 0.5rem 0.75rem;
+	padding: 0.55rem 0.8rem;
+}
+
+.site-navigation {
+	display: none;
+	order: 4;
+	width: 100%;
+}
+
+.site-navigation.is-open {
+	display: block;
+}
+
+.site-header__cta {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	min-height: 44px;
+	border-radius: 4px;
+	background: var(--xinniu-champagne-gold);
+	color: var(--xinniu-charcoal);
+	font-weight: 700;
+	padding: 0.55rem 0.9rem;
+	text-decoration: none;
 }
 
 .breadcrumbs {
@@ -144,17 +174,17 @@ img {
 .front-hero {
 	display: grid;
 	align-items: end;
-	min-height: 58vh;
+	min-height: calc(100svh - 68px);
 	background:
-		linear-gradient(90deg, rgba(23, 20, 18, 0.88), rgba(23, 20, 18, 0.42)),
+		linear-gradient(180deg, rgba(23, 20, 18, 0.64), rgba(23, 20, 18, 0.94)),
 		var(--xinniu-deep-wood);
 	color: #fff;
-	padding: 7rem 0 4rem;
+	padding: 3.75rem 0 2rem;
 }
 
 .front-hero__eyebrow {
 	color: var(--xinniu-champagne-gold);
-	font-size: 0.875rem;
+	font-size: 0.8125rem;
 	font-weight: 700;
 	text-transform: uppercase;
 }
@@ -163,19 +193,26 @@ img {
 	max-width: 760px;
 	margin: 0;
 	font-family: "Noto Serif JP", "Noto Serif SC", Georgia, serif;
-	font-size: clamp(2.5rem, 5vw, 5rem);
-	line-height: 1.1;
+	font-size: 2.55rem;
+	line-height: 1.08;
 }
 
 .front-hero__summary {
 	max-width: 620px;
-	margin: 1.25rem 0 0;
+	margin: 1rem 0 0;
 	color: rgba(255, 255, 255, 0.84);
-	font-size: 1.125rem;
+	font-size: 1rem;
+}
+
+.front-hero__actions {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 0.75rem;
+	margin-top: 1.5rem;
 }
 
 .site-main {
-	padding: 4rem 0;
+	padding: 2.75rem 0;
 }
 
 .is-front-page .site-main {
@@ -194,7 +231,7 @@ img {
 .page-title {
 	margin: 0 0 1.5rem;
 	font-family: "Noto Serif JP", "Noto Serif SC", Georgia, serif;
-	font-size: 2.25rem;
+	font-size: 1.85rem;
 	line-height: 1.25;
 }
 
@@ -209,8 +246,8 @@ img {
 
 .entry-grid {
 	display: grid;
-	grid-template-columns: repeat(3, minmax(0, 1fr));
-	gap: 1.5rem;
+	grid-template-columns: 1fr;
+	gap: 1rem;
 }
 
 .entry-card {
@@ -232,7 +269,7 @@ img {
 }
 
 .entry-card__body {
-	padding: 1.25rem;
+	padding: 1rem;
 }
 
 .entry-card__title {
@@ -279,7 +316,7 @@ img {
 .malatang-hero {
 	background: var(--xinniu-charcoal);
 	color: #fff;
-	padding: 5rem 0 3rem;
+	padding: 3rem 0 2.25rem;
 }
 
 .malatang-hero .entry-title {
@@ -292,19 +329,19 @@ img {
 }
 
 .malatang-section {
-	margin-top: 4rem;
+	margin-top: 2.75rem;
 }
 
 .malatang-section h2,
 .malatang-cta h2 {
 	font-family: "Noto Serif JP", "Noto Serif SC", Georgia, serif;
-	font-size: 1.75rem;
+	font-size: 1.45rem;
 }
 
 .malatang-keywords {
 	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: 1.5rem;
+	grid-template-columns: 1fr;
+	gap: 1rem;
 }
 
 .malatang-keywords > div,
@@ -315,7 +352,7 @@ img {
 	background: #fffaf1;
 	border: 1px solid var(--xinniu-border);
 	border-radius: 8px;
-	padding: 1.5rem;
+	padding: 1rem;
 }
 
 .store-info,
@@ -350,12 +387,23 @@ img {
 	justify-content: center;
 	min-height: 44px;
 	border-radius: 4px;
-	padding: 0.65rem 1rem;
+	padding: 0.72rem 1rem;
+	font-weight: 700;
 	text-decoration: none;
 }
 
 .button--primary {
 	background: var(--xinniu-wine-red);
+	color: #fff;
+}
+
+.button--secondary {
+	background: var(--xinniu-champagne-gold);
+	color: var(--xinniu-charcoal);
+}
+
+.button--ghost {
+	border: 1px solid rgba(255, 255, 255, 0.34);
 	color: #fff;
 }
 
@@ -376,41 +424,104 @@ img {
 	font-size: 0.875rem;
 }
 
-@media (max-width: 800px) {
+.mobile-actions {
+	position: fixed;
+	z-index: 50;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	background: rgba(23, 20, 18, 0.96);
+	border-top: 1px solid rgba(255, 255, 255, 0.16);
+	box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.mobile-actions__item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 58px;
+	color: #fff;
+	font-size: 0.875rem;
+	font-weight: 700;
+	text-align: center;
+	text-decoration: none;
+}
+
+.mobile-actions__item:first-child {
+	background: var(--xinniu-wine-red);
+}
+
+@media (min-width: 720px) {
+	body {
+		padding-bottom: 0;
+	}
+
 	.site-header__inner {
-		flex-wrap: wrap;
-		padding: 1rem 0;
+		flex-wrap: nowrap;
+		gap: 1.5rem;
+		min-height: 76px;
+		padding: 0;
 	}
 
 	.site-navigation-toggle {
-		display: inline-flex;
+		display: none;
 	}
 
 	.site-navigation {
-		display: none;
-		width: 100%;
-	}
-
-	.site-navigation.is-open {
 		display: block;
+		order: initial;
+		width: auto;
 	}
 
-	.site-navigation__menu {
-		display: grid;
-		gap: 0.75rem;
-		padding: 1rem 0 0;
+	.site-navigation__menu,
+	.site-footer__menu {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		align-items: center;
 	}
 
-	.entry-grid {
-		grid-template-columns: 1fr;
-	}
-
-	.malatang-keywords {
-		grid-template-columns: 1fr;
+	.site-header__cta {
+		display: inline-flex;
 	}
 
 	.front-hero {
-		min-height: 62vh;
-		padding: 5rem 0 3rem;
+		min-height: 58vh;
+		padding: 7rem 0 4rem;
+		background:
+			linear-gradient(90deg, rgba(23, 20, 18, 0.88), rgba(23, 20, 18, 0.42)),
+			var(--xinniu-deep-wood);
+	}
+
+	.front-hero__title {
+		font-size: clamp(3rem, 5vw, 5rem);
+	}
+
+	.front-hero__summary {
+		font-size: 1.125rem;
+	}
+
+	.front-hero__actions {
+		grid-template-columns: repeat(3, max-content);
+	}
+
+	.entry-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.malatang-keywords {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.mobile-actions {
+		display: none;
+	}
+}
+
+@media (min-width: 1024px) {
+	.entry-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
 }

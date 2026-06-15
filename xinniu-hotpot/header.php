@@ -45,6 +45,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 				);
 				?>
 			</nav>
+
+			<a class="site-header__cta" href="<?php echo esc_url( xinniu_get_reservation_url() ); ?>">
+				<?php echo esc_html( xinniu_get_reservation_label() ); ?>
+			</a>
 		</div>
 	</header>
 

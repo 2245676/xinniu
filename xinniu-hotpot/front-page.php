@@ -16,6 +16,17 @@ get_header();
 			<p class="front-hero__summary">
 				<?php echo esc_html( get_bloginfo( 'description' ) ? get_bloginfo( 'description' ) : xinniu_get_default_intro() ); ?>
 			</p>
+			<div class="front-hero__actions">
+				<a class="button button--primary" href="<?php echo esc_url( xinniu_get_reservation_url() ); ?>">
+					<?php echo esc_html( xinniu_get_reservation_label() ); ?>
+				</a>
+				<a class="button button--secondary" href="<?php echo esc_url( home_url( '/menu/' ) ); ?>">
+					<?php esc_html_e( 'View Menu', 'xinniu-hotpot' ); ?>
+				</a>
+				<a class="button button--ghost" href="<?php echo esc_url( home_url( '/malatang/' ) ); ?>">
+					<?php esc_html_e( 'Malatang', 'xinniu-hotpot' ); ?>
+				</a>
+			</div>
 		</div>
 	</section>
 
@@ -35,4 +46,3 @@ get_header();
 
 <?php
 get_footer();
-
