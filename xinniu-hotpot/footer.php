@@ -16,6 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<p><?php echo esc_html( get_bloginfo( 'description' ) ); ?></p>
 			</div>
 
+			<?php get_template_part( 'template-parts/global/footer-store' ); ?>
+			<?php get_template_part( 'template-parts/global/social-links' ); ?>
+
 			<nav class="site-footer__navigation" aria-label="<?php esc_attr_e( 'Footer menu', 'xinniu-hotpot' ); ?>">
 				<?php
 				wp_nav_menu(

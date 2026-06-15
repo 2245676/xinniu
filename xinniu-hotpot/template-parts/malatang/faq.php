@@ -37,7 +37,7 @@ if ( ! $query->have_posts() ) {
 			$query->the_post();
 			?>
 			<article class="faq-item">
-				<h3><?php the_title(); ?></h3>
+				<h3><?php echo esc_html( get_the_title() ); ?></h3>
 				<div><?php the_content(); ?></div>
 			</article>
 			<?php
@@ -46,4 +46,3 @@ if ( ! $query->have_posts() ) {
 		?>
 	</div>
 </section>
-

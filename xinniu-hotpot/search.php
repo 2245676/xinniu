@@ -16,7 +16,7 @@ get_header();
 				printf(
 					/* translators: %s: Search query. */
 					esc_html__( 'Search results for: %s', 'xinniu-hotpot' ),
-					'<span>' . esc_html( get_search_query() ) . '</span>'
+					esc_html( get_search_query() )
 				);
 				?>
 			</h1>
@@ -42,4 +42,3 @@ get_header();
 
 <?php
 get_footer();
-

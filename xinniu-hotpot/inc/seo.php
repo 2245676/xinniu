@@ -91,6 +91,12 @@ function xinniu_output_seo_meta() {
 		$robots[] = 'follow';
 	}
 
+	$description = xinniu_get_seo_description();
+
+	if ( '' !== $description ) {
+		printf( '<meta name="description" content="%s">' . "\n", esc_attr( wp_strip_all_tags( $description ) ) );
+	}
+
 	printf( '<link rel="canonical" href="%s">' . "\n", esc_url( $canonical ) );
 	printf( '<meta name="robots" content="%s">' . "\n", esc_attr( implode( ',', $robots ) ) );
 
@@ -99,11 +105,15 @@ function xinniu_output_seo_meta() {
 	}
 
 	$title       = xinniu_get_meta_or_default( '_xinniu_og_title', wp_get_document_title() );
-	$description = xinniu_get_meta_or_default( '_xinniu_og_description', xinniu_get_seo_description() );
+	$description = xinniu_get_meta_or_default( '_xinniu_og_description', $description );
 	$image       = '';
 
 	if ( is_singular() && has_post_thumbnail() ) {
 		$image = get_the_post_thumbnail_url( get_the_ID(), 'large' );
+	}
+
+	if ( ! $image ) {
+		$image = (string) xinniu_get_option( 'default_og_image_url' );
 	}
 
 	printf( '<meta property="og:type" content="%s">' . "\n", is_singular() ? 'article' : 'website' );
@@ -121,4 +131,3 @@ function xinniu_output_seo_meta() {
 	printf( '<meta name="twitter:description" content="%s">' . "\n", esc_attr( $description ) );
 }
 add_action( 'wp_head', 'xinniu_output_seo_meta', 2 );
-

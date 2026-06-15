@@ -53,6 +53,24 @@ function xinniu_get_breadcrumb_items() {
 			'name' => __( 'News', 'xinniu-hotpot' ),
 			'url'  => get_post_type_archive_link( 'xinniu_news' ),
 		);
+	} elseif ( is_tax( 'xinniu_dish_category' ) ) {
+		$items[] = array(
+			'name' => __( 'Menu', 'xinniu-hotpot' ),
+			'url'  => get_post_type_archive_link( 'xinniu_dish' ),
+		);
+		$items[] = array(
+			'name' => single_term_title( '', false ),
+			'url'  => get_term_link( get_queried_object() ),
+		);
+	} elseif ( is_tax( 'xinniu_faq_category' ) ) {
+		$items[] = array(
+			'name' => __( 'FAQ', 'xinniu-hotpot' ),
+			'url'  => home_url( '/faq/' ),
+		);
+		$items[] = array(
+			'name' => single_term_title( '', false ),
+			'url'  => get_term_link( get_queried_object() ),
+		);
 	} elseif ( is_search() ) {
 		$items[] = array(
 			'name' => __( 'Search', 'xinniu-hotpot' ),
@@ -97,4 +115,3 @@ function xinniu_breadcrumbs() {
 	</nav>
 	<?php
 }
-

@@ -56,7 +56,7 @@ add_action( 'template_redirect', 'xinniu_redirect_malatang_aliases' );
  * @return string
  */
 function xinniu_get_default_intro() {
-	return esc_html__(
+	return __(
 		'Premium Chinese hotpot dining in Fukuoka, blending modern hospitality with refined East Asian dining culture.',
 		'xinniu-hotpot'
 	);

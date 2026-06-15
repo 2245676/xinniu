@@ -29,7 +29,7 @@
 				</div>
 			<?php endif; ?>
 
-			<?php the_title( '<h2 class="entry-card__title">', '</h2>' ); ?>
+			<h2 class="entry-card__title"><?php echo esc_html( get_the_title() ); ?></h2>
 			<?php if ( has_excerpt() ) : ?>
 				<p class="entry-card__excerpt"><?php echo esc_html( get_the_excerpt() ); ?></p>
 			<?php endif; ?>

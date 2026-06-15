@@ -26,6 +26,7 @@ $xinniu_includes = array(
 	'inc/llms.php',
 	'inc/woocommerce.php',
 	'inc/breadcrumbs.php',
+	'inc/gutenberg.php',
 	'inc/template-tags.php',
 	'inc/template-functions.php',
 );

@@ -16,7 +16,7 @@ get_header();
 		</header>
 
 		<?php if ( have_posts() ) : ?>
-			<div class="entry-grid">
+			<div class="news-list">
 				<?php
 				while ( have_posts() ) :
 					the_post();
@@ -34,4 +34,3 @@ get_header();
 
 <?php
 get_footer();
-

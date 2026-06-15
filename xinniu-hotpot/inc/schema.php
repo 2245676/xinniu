@@ -49,6 +49,11 @@ function xinniu_get_restaurant_schema() {
 		$schema['hasMap'] = $map_url;
 	}
 
+	$hours = (string) xinniu_get_option( 'business_hours' );
+	if ( '' !== $hours ) {
+		$schema['openingHours'] = array_filter( array_map( 'trim', explode( "\n", $hours ) ) );
+	}
+
 	$same_as = array_filter(
 		array(
 			(string) xinniu_get_option( 'instagram_url' ),
@@ -80,7 +85,33 @@ function xinniu_get_breadcrumb_schema() {
 		),
 	);
 
-	if ( is_singular() ) {
+	if ( is_singular( 'xinniu_dish' ) ) {
+		$items[] = array(
+			'@type'    => 'ListItem',
+			'position' => 2,
+			'name'     => __( 'Menu', 'xinniu-hotpot' ),
+			'item'     => get_post_type_archive_link( 'xinniu_dish' ),
+		);
+		$items[] = array(
+			'@type'    => 'ListItem',
+			'position' => 3,
+			'name'     => wp_strip_all_tags( get_the_title() ),
+			'item'     => get_permalink(),
+		);
+	} elseif ( is_singular( 'xinniu_news' ) ) {
+		$items[] = array(
+			'@type'    => 'ListItem',
+			'position' => 2,
+			'name'     => __( 'News', 'xinniu-hotpot' ),
+			'item'     => get_post_type_archive_link( 'xinniu_news' ),
+		);
+		$items[] = array(
+			'@type'    => 'ListItem',
+			'position' => 3,
+			'name'     => wp_strip_all_tags( get_the_title() ),
+			'item'     => get_permalink(),
+		);
+	} elseif ( is_singular() ) {
 		$items[] = array(
 			'@type'    => 'ListItem',
 			'position' => 2,
@@ -100,6 +131,32 @@ function xinniu_get_breadcrumb_schema() {
 			'position' => 2,
 			'name'     => __( 'News', 'xinniu-hotpot' ),
 			'item'     => get_post_type_archive_link( 'xinniu_news' ),
+		);
+	} elseif ( is_tax( 'xinniu_dish_category' ) ) {
+		$items[] = array(
+			'@type'    => 'ListItem',
+			'position' => 2,
+			'name'     => __( 'Menu', 'xinniu-hotpot' ),
+			'item'     => get_post_type_archive_link( 'xinniu_dish' ),
+		);
+		$items[] = array(
+			'@type'    => 'ListItem',
+			'position' => 3,
+			'name'     => single_term_title( '', false ),
+			'item'     => get_term_link( get_queried_object() ),
+		);
+	} elseif ( is_tax( 'xinniu_faq_category' ) ) {
+		$items[] = array(
+			'@type'    => 'ListItem',
+			'position' => 2,
+			'name'     => __( 'FAQ', 'xinniu-hotpot' ),
+			'item'     => home_url( '/faq/' ),
+		);
+		$items[] = array(
+			'@type'    => 'ListItem',
+			'position' => 3,
+			'name'     => single_term_title( '', false ),
+			'item'     => get_term_link( get_queried_object() ),
 		);
 	}
 
@@ -167,42 +224,8 @@ function xinniu_get_schema_graph() {
 		);
 	}
 
-	if ( is_page_template( 'page-templates/template-malatang.php' ) ) {
-		$faq_query = new WP_Query(
-			array(
-				'post_type'      => 'xinniu_faq',
-				'posts_per_page' => 8,
-				'orderby'        => array(
-					'menu_order' => 'ASC',
-					'title'      => 'ASC',
-				),
-				'no_found_rows'  => true,
-				'tax_query'      => array(
-					array(
-						'taxonomy' => 'xinniu_faq_category',
-						'field'    => 'slug',
-						'terms'    => array( 'malatang', 'mala-tang', 'maratan' ),
-					),
-				),
-			)
-		);
-
-		$questions = array();
-
-		while ( $faq_query->have_posts() ) {
-			$faq_query->the_post();
-			$questions[] = array(
-				'@type'          => 'Question',
-				'name'           => wp_strip_all_tags( get_the_title() ),
-				'acceptedAnswer' => array(
-					'@type' => 'Answer',
-					'text'  => wp_strip_all_tags( get_the_content() ),
-				),
-			);
-		}
-
-		wp_reset_postdata();
-
+	if ( is_page_template( 'page-templates/template-faq.php' ) || is_page_template( 'page-templates/template-malatang.php' ) ) {
+		$questions = xinniu_get_faq_schema_questions( is_page_template( 'page-templates/template-malatang.php' ) );
 		if ( ! empty( $questions ) ) {
 			$graph[] = array(
 				'@type'      => 'FAQPage',
@@ -222,6 +245,53 @@ function xinniu_get_schema_graph() {
 	}
 
 	return apply_filters( 'xinniu_json_ld_data', array( '@context' => 'https://schema.org', '@graph' => $graph ) );
+}
+
+/**
+ * Build FAQ schema questions.
+ *
+ * @param bool $malatang_only Whether to include only malatang FAQ terms.
+ * @return array<int, array<string, mixed>>
+ */
+function xinniu_get_faq_schema_questions( $malatang_only = false ) {
+	$args = array(
+		'post_type'      => 'xinniu_faq',
+		'posts_per_page' => 20,
+		'orderby'        => array(
+			'menu_order' => 'ASC',
+			'title'      => 'ASC',
+		),
+		'no_found_rows'  => true,
+	);
+
+	if ( $malatang_only ) {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => 'xinniu_faq_category',
+				'field'    => 'slug',
+				'terms'    => array( 'malatang', 'mala-tang', 'maratan' ),
+			),
+		);
+	}
+
+	$faq_query = new WP_Query( $args );
+	$questions = array();
+
+	while ( $faq_query->have_posts() ) {
+		$faq_query->the_post();
+		$questions[] = array(
+			'@type'          => 'Question',
+			'name'           => wp_strip_all_tags( get_the_title() ),
+			'acceptedAnswer' => array(
+				'@type' => 'Answer',
+				'text'  => wp_strip_all_tags( get_the_content() ),
+			),
+		);
+	}
+
+	wp_reset_postdata();
+
+	return $questions;
 }
 
 /**

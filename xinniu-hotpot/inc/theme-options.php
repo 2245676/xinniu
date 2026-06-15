@@ -36,6 +36,7 @@ function xinniu_get_default_options() {
 		'header_cta_url'         => '',
 		'default_seo_title'      => '',
 		'default_seo_description' => '',
+		'default_og_image_url'   => '',
 		'enable_theme_schema'    => 1,
 		'enable_theme_ogp'       => 1,
 		'enable_llms_txt'        => 1,
@@ -97,6 +98,7 @@ function xinniu_sanitize_options( $input ) {
 			case 'line_url':
 			case 'header_cta_url':
 			case 'malatang_cta_url':
+			case 'default_og_image_url':
 				$output[ $key ] = xinniu_sanitize_url( $value );
 				break;
 
@@ -296,6 +298,7 @@ function xinniu_render_options_page() {
 				<?php
 				xinniu_render_text_option( 'default_seo_title', __( 'Default SEO Title', 'xinniu-hotpot' ) );
 				xinniu_render_textarea_option( 'default_seo_description', __( 'Default SEO Description', 'xinniu-hotpot' ) );
+				xinniu_render_text_option( 'default_og_image_url', __( 'Default OGP Image URL', 'xinniu-hotpot' ), 'url' );
 				xinniu_render_checkbox_option( 'enable_theme_schema', __( 'Theme Schema Output', 'xinniu-hotpot' ) );
 				xinniu_render_checkbox_option( 'enable_theme_ogp', __( 'Theme Open Graph Output', 'xinniu-hotpot' ) );
 				xinniu_render_checkbox_option( 'enable_llms_txt', __( 'llms.txt Output', 'xinniu-hotpot' ) );
