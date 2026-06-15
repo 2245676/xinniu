@@ -1,0 +1,10 @@
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", "Noto Sans SC", sans-serif;
+	line-height: 1.7;
+}
+
+.editor-styles-wrapper {
+	background: #f6f0e6;
+	color: #171412;
+}
+
