@@ -42,6 +42,12 @@ get_header();
 		endif;
 		?>
 	</div>
+
+	<?php get_template_part( 'template-parts/front-page/featured-menu' ); ?>
+	<?php get_template_part( 'template-parts/front-page/malatang-entry' ); ?>
+	<?php get_template_part( 'template-parts/front-page/store-info' ); ?>
+	<?php get_template_part( 'template-parts/front-page/news' ); ?>
+	<?php get_template_part( 'template-parts/front-page/faq' ); ?>
 </main>
 
 <?php

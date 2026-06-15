@@ -294,6 +294,106 @@ img {
 	font-weight: 400;
 }
 
+.front-section {
+	padding: 2.75rem 0;
+}
+
+.front-section:nth-of-type(even) {
+	background: rgba(255, 250, 241, 0.62);
+}
+
+.front-section__inner {
+	width: min(100% - 2rem, var(--xinniu-width));
+	margin-inline: auto;
+}
+
+.front-section__header {
+	display: grid;
+	gap: 0.35rem;
+	margin-bottom: 1.25rem;
+}
+
+.front-section__eyebrow {
+	margin: 0;
+	color: var(--xinniu-wine-red);
+	font-size: 0.8125rem;
+	font-weight: 800;
+	text-transform: uppercase;
+}
+
+.front-section__header h2,
+.front-malatang h2 {
+	margin: 0;
+	font-family: "Noto Serif JP", "Noto Serif SC", Georgia, serif;
+	font-size: 1.55rem;
+	line-height: 1.25;
+}
+
+.front-section__link {
+	display: inline-flex;
+	align-items: center;
+	min-height: 44px;
+	width: max-content;
+	font-weight: 700;
+}
+
+.front-malatang {
+	display: grid;
+	gap: 1.25rem;
+	padding: 1.25rem;
+	background:
+		linear-gradient(135deg, rgba(125, 31, 45, 0.9), rgba(23, 20, 18, 0.96)),
+		var(--xinniu-charcoal);
+	border-radius: 8px;
+	color: #fff;
+}
+
+.front-malatang .front-section__eyebrow {
+	color: var(--xinniu-champagne-gold);
+}
+
+.front-malatang p {
+	margin: 0.75rem 0 0;
+	color: rgba(255, 255, 255, 0.82);
+}
+
+.front-info-list,
+.front-news-list {
+	display: grid;
+	gap: 0.75rem;
+}
+
+.front-info-list p,
+.front-news-item {
+	margin: 0;
+	padding: 1rem;
+	background: #fffaf1;
+	border: 1px solid var(--xinniu-border);
+	border-radius: 8px;
+}
+
+.front-info-list p {
+	display: grid;
+	gap: 0.35rem;
+}
+
+.front-info-list strong,
+.front-news-item time {
+	color: var(--xinniu-ink-muted);
+	font-size: 0.8125rem;
+}
+
+.front-info-list a,
+.front-news-item a {
+	font-weight: 700;
+}
+
+.front-news-item h3 {
+	margin: 0.25rem 0 0;
+	font-size: 1rem;
+	line-height: 1.45;
+}
+
 .dish-meta {
 	display: grid;
 	gap: 0.5rem;
@@ -505,6 +605,35 @@ img {
 
 	.front-hero__actions {
 		grid-template-columns: repeat(3, max-content);
+	}
+
+	.front-section {
+		padding: 4rem 0;
+	}
+
+	.front-section__header {
+		grid-template-columns: 1fr auto;
+		align-items: end;
+		column-gap: 1.5rem;
+	}
+
+	.front-section__eyebrow {
+		grid-column: 1 / -1;
+	}
+
+	.front-section__header h2,
+	.front-malatang h2 {
+		font-size: 1.9rem;
+	}
+
+	.front-malatang {
+		grid-template-columns: 1fr max-content;
+		align-items: center;
+		padding: 2rem;
+	}
+
+	.front-info-list {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
 
 	.entry-grid {
