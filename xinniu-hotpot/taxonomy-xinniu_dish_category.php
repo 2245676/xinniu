@@ -1,6 +1,6 @@
 <?php
 /**
- * Dish archive template.
+ * Dish category archive template.
  *
  * @package Xinniu_Hotpot
  */
@@ -11,8 +11,8 @@ get_header();
 <main id="primary" class="site-main">
 	<div class="site-main__inner">
 		<header class="page-header">
-			<h1 class="page-title"><?php esc_html_e( 'Menu', 'xinniu-hotpot' ); ?></h1>
-			<p><?php esc_html_e( 'Explore hotpot dishes, soup bases, meats, seafood, vegetables, drinks, and seasonal recommendations.', 'xinniu-hotpot' ); ?></p>
+			<?php the_archive_title( '<h1 class="page-title">', '</h1>' ); ?>
+			<?php the_archive_description( '<div class="archive-description">', '</div>' ); ?>
 		</header>
 
 		<?php get_template_part( 'template-parts/menu/category-nav' ); ?>
@@ -36,3 +36,4 @@ get_header();
 
 <?php
 get_footer();
+

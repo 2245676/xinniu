@@ -250,6 +250,38 @@ img {
 	gap: 1rem;
 }
 
+.menu-filter {
+	display: flex;
+	gap: 0.5rem;
+	margin: 0 0 1.25rem;
+	padding: 0 0 0.35rem;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: thin;
+}
+
+.menu-filter__item {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 44px;
+	flex: 0 0 auto;
+	border: 1px solid var(--xinniu-border);
+	border-radius: 999px;
+	background: #fffaf1;
+	color: var(--xinniu-charcoal);
+	font-size: 0.875rem;
+	font-weight: 700;
+	padding: 0.55rem 0.9rem;
+	text-decoration: none;
+}
+
+.menu-filter__item.is-active {
+	background: var(--xinniu-charcoal);
+	border-color: var(--xinniu-charcoal);
+	color: #fff;
+}
+
 .entry-card {
 	background: #fffaf1;
 	border: 1px solid var(--xinniu-border);
@@ -292,6 +324,43 @@ img {
 	color: var(--xinniu-ink-muted);
 	font-size: 0.875rem;
 	font-weight: 400;
+}
+
+.dish-badges {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.35rem;
+	margin-bottom: 0.6rem;
+}
+
+.dish-badge {
+	display: inline-flex;
+	align-items: center;
+	min-height: 28px;
+	border-radius: 999px;
+	background: rgba(125, 31, 45, 0.1);
+	color: var(--xinniu-wine-red);
+	font-size: 0.75rem;
+	font-weight: 800;
+	padding: 0.2rem 0.55rem;
+}
+
+.dish-card-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+	margin-top: 0.85rem;
+	color: var(--xinniu-ink-muted);
+	font-size: 0.8125rem;
+}
+
+.dish-card-meta span {
+	display: inline-flex;
+	align-items: center;
+	min-height: 28px;
+	border: 1px solid var(--xinniu-border);
+	border-radius: 999px;
+	padding: 0.15rem 0.55rem;
 }
 
 .front-section {
@@ -634,6 +703,11 @@ img {
 
 	.front-info-list {
 		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.menu-filter {
+		flex-wrap: wrap;
+		overflow: visible;
 	}
 
 	.entry-grid {
