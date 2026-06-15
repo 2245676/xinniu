@@ -27,6 +27,7 @@ $xinniu_includes = array(
 	'inc/woocommerce.php',
 	'inc/breadcrumbs.php',
 	'inc/gutenberg.php',
+	'inc/admin-columns.php',
 	'inc/template-tags.php',
 	'inc/template-functions.php',
 );

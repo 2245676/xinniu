@@ -26,6 +26,8 @@ Premium WordPress theme for Xinniu Hotpot, a high-end Chinese hotpot restaurant 
 * FAQ page template and FAQ category archives.
 * Gutenberg block patterns for reservation and malatang content.
 * Mobile-first homepage, menu, news, FAQ, footer, and quick action UI.
+* Admin columns for menu, malatang, and FAQ operations.
+* Dynamic llms.txt and virtual robots.txt integration.
 * WooCommerce compatibility hooks and styles.
 
 == Setup ==

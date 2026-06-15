@@ -221,6 +221,7 @@ function xinniu_get_schema_graph() {
 			'provider'    => array(
 				'@id' => home_url( '/#restaurant' ),
 			),
+			'hasMenuItem' => xinniu_get_menu_item_schema_list(),
 		);
 	}
 
@@ -232,7 +233,9 @@ function xinniu_get_schema_graph() {
 				'mainEntity' => $questions,
 			);
 		}
+	}
 
+	if ( is_page_template( 'page-templates/template-malatang.php' ) ) {
 		$graph[] = array(
 			'@type'       => 'Menu',
 			'name'        => __( 'Malatang Menu', 'xinniu-hotpot' ),
@@ -245,6 +248,52 @@ function xinniu_get_schema_graph() {
 	}
 
 	return apply_filters( 'xinniu_json_ld_data', array( '@context' => 'https://schema.org', '@graph' => $graph ) );
+}
+
+/**
+ * Build a compact MenuItem schema list for menu archive pages.
+ *
+ * @return array<int, array<string, mixed>>
+ */
+function xinniu_get_menu_item_schema_list() {
+	$query = new WP_Query(
+		array(
+			'post_type'      => 'xinniu_dish',
+			'posts_per_page' => 30,
+			'orderby'        => array(
+				'menu_order' => 'ASC',
+				'title'      => 'ASC',
+			),
+			'no_found_rows'  => true,
+		)
+	);
+
+	$items = array();
+
+	while ( $query->have_posts() ) {
+		$query->the_post();
+		$price = get_post_meta( get_the_ID(), '_xinniu_price', true );
+		$item  = array(
+			'@type'       => 'MenuItem',
+			'name'        => wp_strip_all_tags( get_the_title() ),
+			'description' => wp_strip_all_tags( get_the_excerpt() ),
+			'url'         => get_permalink(),
+		);
+
+		if ( '' !== $price ) {
+			$item['offers'] = array(
+				'@type'         => 'Offer',
+				'price'         => $price,
+				'priceCurrency' => 'JPY',
+			);
+		}
+
+		$items[] = $item;
+	}
+
+	wp_reset_postdata();
+
+	return $items;
 }
 
 /**
